@@ -12,7 +12,7 @@ class DetailController extends Controller
     {
         $details = Detail::all();
         $kuliners = Kuliner::all();
-        return view('details.data', compact('details', 'kuliners'));
+        return view('detail-menu', compact('details', 'kuliners'));
     }
 
     public function store(Request $request)
@@ -37,9 +37,9 @@ class DetailController extends Controller
                 'keterangan_menu' => $request->keterangan_menu,
             ]);
         
-            return redirect()->route('details.data')->with('success', 'Detail created successfully');
+            return redirect()->back()->with('success', 'Detail created successfully');
         } else {
-            return redirect()->route('details.data')->with('error', 'Invalid id_detail. Kuliner not found.');
+            return redirect()->back()->with('error', 'Invalid id_detail. Kuliner not found.');
         }
     }
 
@@ -59,7 +59,7 @@ class DetailController extends Controller
     $detail = Detail::find($id);
 
     if (!$detail) {
-        return redirect()->route('details.data')->with('error', 'Detail not found');
+        return redirect()->back()->with('error', 'Detail not found');
     }
 
     $imagePath = $detail->file_menu; // Tetap gunakan gambar yang sudah ada jika tidak ada file baru
@@ -71,7 +71,7 @@ class DetailController extends Controller
     $kuliner = Kuliner::find($request->id_detail);
 
     if (!$kuliner) {
-        return redirect()->route('details.data')->with('error', 'Kuliner not found');
+        return redirect()->back()->with('error', 'Kuliner not found');
     }
 
     $detail->update([
@@ -82,7 +82,7 @@ class DetailController extends Controller
         'keterangan_menu' => $request->keterangan_menu,
     ]);
 
-    return redirect()->route('details.data')->with('success', 'Detail updated successfully');
+    return redirect()->back()->with('success', 'Detail updated successfully');
 }
 
     
@@ -90,7 +90,7 @@ class DetailController extends Controller
     {
         Detail::find($id)->delete();
     
-        return redirect()->route('details.data')
+        return redirect()->back()
             ->with('success', 'Detail deleted successfully');
     }
     

@@ -20,6 +20,12 @@ class KulinerController extends Controller
         return view('kuliners.data', compact('kuliners'));
     }
 
+    public function dashboard()
+    {
+        $kuliners = Kuliner::all();
+        return view('dashboard', compact('kuliners'));
+    }
+
     public function create()
     {
         return view('kuliners.create');
@@ -45,7 +51,7 @@ class KulinerController extends Controller
         'maps' => $request->maps,
     ]);
 
-    return redirect()->route('kuliner')->with('success', 'Data kuliners berhasil ditambahkan.');
+    return redirect()->route('dashboard')->with('success', 'Data kuliners berhasil ditambahkan.');
 }
 
     public function show($id)
@@ -91,14 +97,14 @@ class KulinerController extends Controller
         $kuliner->update(['file' => $imagePath]);
     }
 
-    return redirect()->route('kuliner')->with('success', 'Data kuliners berhasil diperbarui.');
+    return redirect()->route('dashboard')->with('success', 'Data kuliners berhasil diperbarui.');
 }
 
     public function destroy($id)
     {
         Kuliner::find($id)->delete();
 
-        return redirect()->route('kuliner')
+        return redirect()->route('dashboard')
                          ->with('success', 'Data kuliners berhasil dihapus.');
     }
 }

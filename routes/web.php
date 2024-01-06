@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [KulinerController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [KulinerController::class, 'dashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::get('/list/{id}', [KulinerController::class, 'show'])->name('detail-menu');
 

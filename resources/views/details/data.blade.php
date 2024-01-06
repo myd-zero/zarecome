@@ -140,7 +140,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4>Yakin ingin menghapus data ini?</h4>
+                    <p>Yakin ingin menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
